@@ -1,4 +1,4 @@
-const birthDate = new Date('2024-12-26T14:024:00'); // Replace with actual birth date
+const birthDate = new Date('2024-12-26T14:24:00'); // Replace with actual birth date
 
 function updateTimer() {
     const now = new Date();
