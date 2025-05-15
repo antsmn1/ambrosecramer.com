@@ -3,40 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growing Up Timer</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Growing Up</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 900px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+        .timer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .time-unit {
+            background-color: #f1f5f9;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .time-unit span {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #0f766e;
+        }
+        .time-unit label {
+            color: #64748b;
+            font-size: 0.9rem;
+            text-transform: lowercase;
+        }
+        p {
+            color: #5d6778;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Make it responsive on very small screens */
+        @media (max-width: 600px) {
+            .timer {
+                flex-direction: column;
+                align-items: center;
+            }
+            .time-unit {
+                width: 80%;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Growing Up</h1>
+        <h1>This domain is being saved for the future</h1>
         <div class="timer">
             <div class="time-unit">
                 <span id="years">0</span>
-                <label>Years</label>
+                <label>years</label>
             </div>
             <div class="time-unit">
                 <span id="months">0</span>
-                <label>Months</label>
+                <label>months</label>
             </div>
             <div class="time-unit">
                 <span id="days">0</span>
-                <label>Days</label>
+                <label>days</label>
             </div>
             <div class="time-unit">
                 <span id="hours">0</span>
-                <label>Hours</label>
+                <label>hours</label>
             </div>
             <div class="time-unit">
                 <span id="minutes">0</span>
-                <label>Minutes</label>
-            </div>
-            <div class="time-unit">
-                <span id="seconds">0</span>
-                <label>Seconds</label>
+                <label>minutes</label>
             </div>
         </div>
-        <p class="message">Watching the moments add up...</p>
+        <p>Time flies when you're growing up.</p>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Set the birthdate - CHANGE THIS to your child's birthdate
+        const birthDate = new Date('2024-12-26T14:24:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - birthDate;
+
+            const years = Math.floor(difference / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((difference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30.44));
+            const days = Math.floor((difference % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('years').textContent = years;
+            document.getElementById('months').textContent = months;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
